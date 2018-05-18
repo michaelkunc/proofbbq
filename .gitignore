@@ -1,3 +1,14 @@
-#vs code sessintgs
-settings.json
+# pyc
+*.pyc
+
+# pycache 
+__pycache__
+
+# development config
 instance/
+
+# pytest cache
+.pytest_cache/
+
+# vs code settings
+settings.json
