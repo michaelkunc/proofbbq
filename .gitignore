@@ -9,6 +9,7 @@ instance/
 
 # pytest cache
 .pytest_cache/
+.cache/
 
 # vs code settings
 settings.json
