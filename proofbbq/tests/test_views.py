@@ -2,25 +2,25 @@ import pytest
 
 from proofbbq import app
 
-@pytest.fixture
+
+@pytest.fixture(scope='session')
 def client():
-    app.config['TESTING'] == True
+    app.config['TESTING'] = True
     client = app.test_client()
     yield client
 
 
-def test_index(client):
-    resp = client.get('/')
-    assert resp.status_code == 200
-
-
-def test_cooks(client):
-    resp = client.get('/cooks')
-    assert resp.status_code == 200
+@pytest.mark.parametrize("endpoint,status_code", [
+    ('/', 200),
+    ('/cooks', 200),
+    ('/cooks/1', 200)
+])
+def test_responses(client, endpoint, status_code):
+    resp = client.get(endpoint)
+    assert resp.status_code == status_code
 
 
 @pytest.mark.xfail
 def test_users(client):
     resp = client.get('/users')
     assert resp.status_code == 200
-
