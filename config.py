@@ -8,3 +8,5 @@ db = client.proof
 
 # Collections
 cook = db.cook
+grill = db.grill
+user = db.user
