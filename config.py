@@ -1,10 +1,10 @@
-#TODO this is where prod configuration will live
+# TODO this is where prod configuration will live
 from pymongo import MongoClient
 
-client = MongoClient(host='localhost', port=27017)
+client = MongoClient(host="localhost", port=27017)
 
 # DB
 db = client.proof
 
-#Collections
+# Collections
 cook = db.cook
