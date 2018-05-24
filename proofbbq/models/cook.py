@@ -1,8 +1,8 @@
 import datetime
 
 
-class Cook():
-    ''' defines the cook documents'''
+class Cook:
+    """ defines the cook documents"""
     # TODO: type validator
     # TODO: cooking temp validator
     # TODO: add ending time method (probably property)
@@ -17,7 +17,7 @@ class Cook():
     @property
     def date(self):
         return str(self._date)
-   
+
     @date.setter
     def date(self, d):
         if isinstance(d, datetime.date):

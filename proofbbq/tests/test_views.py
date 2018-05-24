@@ -10,10 +10,7 @@ def client():
     yield client
 
 
-@pytest.mark.parametrize(
-    "endpoint,status_code",
-    [("/", 200), ("/cooks", 200), ("/cooks/1", 200), ("/grills", 200)],
-)
+@pytest.mark.parametrize("endpoint,status_code", [("/", 200), ("/cooks", 200), ("/cooks/1", 200), ("/grills", 200)])
 def test_responses(client, endpoint, status_code):
     resp = client.get(endpoint)
     assert resp.status_code == status_code
