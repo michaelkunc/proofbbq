@@ -40,7 +40,7 @@ class Cook:
     @property
     def temp(self):
         return self._temp
-    
+
     @temp.setter
     def temp(self, tmp):
         if not tmp:
