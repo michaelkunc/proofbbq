@@ -1,14 +1,14 @@
+from collections import OrderedDict
 import datetime
 
 
 class Cook:
     """ defines the cook documents"""
-    # TODO: cooking temp validator
     # TODO: add ending time method (probably property)
 
     TYPE = ("Main Course", "Side Dish")
 
-    def __init__(self, date, type, starting_time=None, temp=None, notes=None):
+    def __init__(self, date, type, starting_time=None, temp=None, notes=OrderedDict()):
         self.date = date
         self.type = type
         self.starting_time = starting_time
@@ -51,3 +51,8 @@ class Cook:
             raise ValueError("temp must be between 80 degrees and 1000 degrees")
         else:
             self._temp = tmp
+
+    def add_note(self, text):
+        """creates a timestamp as a key and text as the note"""
+        timestamp = datetime.datetime.now()
+        self.notes[timestamp] = text
