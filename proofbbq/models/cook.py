@@ -1,4 +1,5 @@
 import datetime
+from proofbbq.models.note import Note
 
 
 class Cook:
@@ -52,7 +53,8 @@ class Cook:
         else:
             self._temp = tmp
 
-    # def add_note(self, text):
-    #     """creates a timestamp as a key and text as the note"""
-    #     timestamp = datetime.datetime.now()
-    #     self.notes[timestamp] = text
+    def add_note(self, text):
+        """adds a Note to the cook class"""
+        note_id = len(self.notes)
+        note = Note(note_id, text)
+        self.notes.append(note)
