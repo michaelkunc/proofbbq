@@ -1,19 +1,19 @@
-from collections import OrderedDict
 import datetime
 
 
 class Cook:
     """ defines the cook documents"""
     # TODO: add ending time method (probably property)
+    # TODO: Implement a tagging system for notes
 
     TYPE = ("Main Course", "Side Dish")
 
-    def __init__(self, date, type, starting_time=None, temp=None, notes=OrderedDict()):
+    def __init__(self, date, type, starting_time=None, temp=None):
         self.date = date
         self.type = type
         self.starting_time = starting_time
         self.temp = temp
-        self.notes = notes
+        self.notes = []
 
     @property
     def date(self):
@@ -52,7 +52,7 @@ class Cook:
         else:
             self._temp = tmp
 
-    def add_note(self, text):
-        """creates a timestamp as a key and text as the note"""
-        timestamp = datetime.datetime.now()
-        self.notes[timestamp] = text
+    # def add_note(self, text):
+    #     """creates a timestamp as a key and text as the note"""
+    #     timestamp = datetime.datetime.now()
+    #     self.notes[timestamp] = text

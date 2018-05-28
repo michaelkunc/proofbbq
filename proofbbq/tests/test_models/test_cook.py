@@ -1,4 +1,3 @@
-from collections import OrderedDict
 import datetime
 import pytest
 from proofbbq.models.cook import Cook
@@ -11,7 +10,7 @@ class TestCook:
         assert cook
         assert cook.date == "2018-05-05"
         assert cook.type == "Main Course"
-        assert isinstance(cook.notes, OrderedDict)
+        assert cook.notes == []
 
     @pytest.mark.parametrize(
         "pos_args,kw_args,error_type",
@@ -31,11 +30,11 @@ class TestCook:
     def cook(self):
         return Cook(datetime.date(2018, 5, 5), "Main Course")
 
-    def test_add_note(self, cook):
-        assert not cook.notes
-        cook.add_note("First note")
-        assert len(cook.notes.keys()) == 1
-        assert list(cook.notes.values()) == ["First note"]
-        cook.add_note("Second note")
-        assert len(cook.notes.keys()) == 2
-        assert list(cook.notes.values()) == ["First note", "Second note"]
+    # def test_add_note(self, cook):
+    #     assert not cook.notes
+    #     cook.add_note("First note")
+    #     assert len(cook.notes.keys()) == 1
+    #     assert list(cook.notes.values()) == ["First note"]
+    #     cook.add_note("Second note")
+    #     assert len(cook.notes.keys()) == 2
+    #     assert list(cook.notes.values()) == ["First note", "Second note"]
