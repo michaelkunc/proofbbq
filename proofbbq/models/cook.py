@@ -54,7 +54,23 @@ class Cook:
             self._temp = tmp
 
     def add_note(self, text):
-        """adds a Note to the cook class"""
+        """adds a Note to the Cook class"""
         note_id = len(self.notes)
         note = Note(note_id, text)
         self.notes.append(note)
+
+    def delete_note(self, note_id):
+        """removes a Note by note id"""
+        note_index = self._find_note(note_id)
+        self.notes.pop(note_index)
+
+    def edit_note(self, note_id, text):
+        """edits the Note text by note id"""
+        note_index = self._find_note(note_id)
+        self.notes[note_index].text = text
+
+    def _find_note(self, note_id):
+        """returns the index of a Note"""
+        for note in self.notes:
+            if note.note_object["id"] == note_id:
+                return self.notes.index(note)

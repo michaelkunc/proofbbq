@@ -5,6 +5,8 @@ from proofbbq.models.cook import Cook
 
 class TestCook:
 
+    # TODO: think about the scope of this fixture. Or do we need additional fixtures
+    # the state is being mutated through seveal test methods.
     @pytest.fixture(scope="class")
     def cook(self):
         return Cook(datetime.date(2018, 5, 5), "Main Course")
@@ -36,3 +38,22 @@ class TestCook:
         cook.add_note("Second note")
         assert len(cook.notes) == 2
         assert [c.note_object["id"] for c in cook.notes] == [0, 1]
+
+    def test_delete_note(self, cook):
+        cook.delete_note(1)
+        assert len(cook.notes) == 1
+
+    def test_edit_note(self, cook):
+        cook.edit_note(0, "this is the next text")
+        assert [c.note_object["text"] for c in cook.notes] == ["this is the next text"]
+
+
+class TestCookHelpers:
+
+    @pytest.fixture
+    def helper_cook(self):
+        return Cook(datetime.date(2018, 5, 5), "Main Course")
+
+    def test_find_note(self, helper_cook):
+        helper_cook.add_note("this is a note")
+        assert helper_cook._find_note(0) == 0
